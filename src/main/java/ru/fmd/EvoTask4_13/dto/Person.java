@@ -3,15 +3,11 @@ package ru.fmd.EvoTask4_13.dto;
 import java.time.LocalDate;
 
 public class Person {
-    private int id;
+    private final int id;
     private String firstname;
     private String surname;
     private String lastname;
     private LocalDate birthday;
-
-    public Person(){
-
-    }
 
     public Person(int id, String firstname, String surname, String lastname, LocalDate birthday) {
         this.id = id;
@@ -23,10 +19,6 @@ public class Person {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstname() {

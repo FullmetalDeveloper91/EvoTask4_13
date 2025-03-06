@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class PersonRepository {
+public class PersonRepository implements iRepository<Person> {
     private final List<Person> persons = new ArrayList<>(Arrays.asList(
             new Person(1, "Ivan", "Ivanovich", "Ivanov", LocalDate.of(1999, 2,3)),
             new Person(2, "Петр", "Петрович", "Петров", LocalDate.of(2002, 2,2)),
@@ -18,19 +18,19 @@ public class PersonRepository {
             new Person(4, "Максим", "Яковлевич", "Окопский", LocalDate.of(1978, 6,5))
     ));
 
-    public List<Person> getPersons() {
+    public List<Person> getAll() {
         return List.copyOf(persons);
     }
 
-    public void addPerson(Person person){
+    public void add(Person person){
         persons.add(person);
     }
 
-    public Optional<Person> getPersonById(int id){
+    public Optional<Person> getById(int id){
         return persons.stream().filter(p -> p.getId() == id).findFirst();
     }
 
-    public int updatePerson(int id, Person person){
+    public int update(int id, Person person){
         int index = -1;
 
         for(Person p : persons){
@@ -43,7 +43,7 @@ public class PersonRepository {
         return index;
     }
 
-    public boolean deletePerson(int id){
+    public boolean delete(int id){
         return persons.removeIf(p-> p.getId() == id);
     }
 }
